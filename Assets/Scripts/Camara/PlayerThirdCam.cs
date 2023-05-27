@@ -20,7 +20,7 @@ public class PlayerThirdCam : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //creem un nou vector per anar rotant el que segueix el player
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
