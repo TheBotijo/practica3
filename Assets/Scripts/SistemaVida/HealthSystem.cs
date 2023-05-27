@@ -20,7 +20,7 @@ public class HealthSystem : MonoBehaviour
         return (float)health / healthMax;
     }
    public void Damage (int damageAmount) {
-        Debug.Log("Entra");
+        //Debug.Log("Entra");
         health -= damageAmount;
         if (health < 0)
         {
@@ -28,7 +28,7 @@ public class HealthSystem : MonoBehaviour
         }
    }
    public void Heal(int healAmount){
-        Debug.Log("Entra2");
+        //Debug.Log("Entra2");
         health += healAmount;
         if (health > healthMax)
         {
