@@ -171,7 +171,7 @@ public class PlayerMoveJump : MonoBehaviour
     {
         if (Time.time > shootRateTime)
         {
-            Debug.Log("Disparar2");
+            //Debug.Log("Disparar2");
             GameObject newBullet;
             Raycast();
             newBullet = Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
@@ -189,8 +189,8 @@ public class PlayerMoveJump : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Debug.Log("Disparar3");
-            Debug.Log(hit.transform.name);
+            //Debug.Log("Disparar3");
+            //Debug.Log(hit.transform.name);
         }
     }
 
