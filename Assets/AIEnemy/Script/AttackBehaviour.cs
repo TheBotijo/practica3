@@ -33,7 +33,7 @@ public class AttackBehaviour : StateMachineBehaviour
         //}
         if (CheckShoot(_player, animator.transform))
         {
-            Debug.Log("El poli dispara");
+            //Debug.Log("El poli dispara");
             animator.SetTrigger("Shoot");
             //animator.SetBool("IsChasing", false);
             //animator.SetBool("IsPatrolling", false);
@@ -48,7 +48,7 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         if (CheckShoot(_player, animator.transform))
         {
-            Debug.Log("El poli dispara");
+           //Debug.Log("El poli dispara");
             animator.SetTrigger("Shoot");
             //animator.SetBool("IsChasing", false);
             //animator.SetBool("IsPatrolling", false);
