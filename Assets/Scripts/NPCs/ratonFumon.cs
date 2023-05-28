@@ -32,6 +32,9 @@ public class ratonFumon : MonoBehaviour
             transform.LookAt(_player.position);
             if (Input.GetButtonDown("Coger"))
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                FindObjectOfType<DialogueTrigger>().TriggerDialogue();
                 isPlayerClose = false;
                 Animator.SetBool("playerClose", false);
                 Animator.SetBool("talking", true);
