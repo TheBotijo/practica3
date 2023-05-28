@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour 
 {
-    public int health;
-    public int healthMax = 100;
+    public float health;
+    public float healthMax = 100;
 
 
-   public HealthSystem(int healthMax) {
+   public HealthSystem(float healthMax) {
         this.health = healthMax;
         health=healthMax;
    }
-   public int GetHealth(){
+   public float GetHealth(){
         return health;
    }
    public float GetHealthPercent()
     {
         return (float)health / healthMax;
     }
-   public void Damage (int damageAmount) {
+   public void Damage (float damageAmount) {
         //Debug.Log("Entra");
         health -= damageAmount;
         if (health < 0)
@@ -27,7 +27,7 @@ public class HealthSystem : MonoBehaviour
             health = 0;
         }
    }
-   public void Heal(int healAmount){
+   public void Heal(float healAmount){
         //Debug.Log("Entra2");
         health += healAmount;
         if (health > healthMax)

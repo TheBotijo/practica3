@@ -29,6 +29,10 @@ public class Animations : MonoBehaviour
     public LayerMask Ground;
     bool grounded;
 
+    [Header("Particulas")]
+    public ParticleSystem blood;
+    
+
     public HealthSystem Vida;
 
 
@@ -72,13 +76,17 @@ public class Animations : MonoBehaviour
         if (Input.GetButton("Jump") && grounded && isMoving)
         {
             Animator.SetBool("JumpMove", true);
-        }else{
+            
+        }
+        else{
             Animator.SetBool("JumpMove", false);
         }
         if (Input.GetButton("Jump") && grounded && !isMoving)
         {
             Animator.SetBool("JumpStatic", true);
-        }else{
+           
+        }
+        else{
             Animator.SetBool("JumpStatic", false);            
         }
         //--------------------------------------------------
@@ -125,6 +133,7 @@ public class Animations : MonoBehaviour
         {
             //isRunning = true;
             Animator.SetBool("Running", true);
+
         }
         else
         {
@@ -153,6 +162,7 @@ public class Animations : MonoBehaviour
             ClipDamage.Play();
             //Recibe daño
             Animator.SetTrigger("Damage");
+            blood.Play();
             Stop = true;
             Vida.Damage(10);
             Invoke("StopFalse", delayDamage);
