@@ -8,6 +8,7 @@ public class Destruir : MonoBehaviour
     public Animator anim;
     public Collider colider;
     public AudioSource clip3;
+    public GameObject postprocess;
     public float delay = 2f;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class Destruir : MonoBehaviour
             anim.SetBool("Tocar", true);
             Destroy(colider);
             Destroy(gameObject, delay);
+            Destroy(postprocess, delay);
             inventario.Cantidad++;
             
         }
