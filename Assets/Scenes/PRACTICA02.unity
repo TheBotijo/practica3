@@ -13109,7 +13109,7 @@ MonoBehaviour:
   yesNo: {fileID: 783034478}
   nextBtn: {fileID: 1641499233}
   animator: {fileID: 1037986289}
-  ratonAnim: {fileID: 0}
+  ratonAnim: {fileID: 919132148864265402}
 --- !u!1 &1773053756
 GameObject:
   m_ObjectHideFlags: 0
@@ -23327,7 +23327,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3696071906474363877}
-  m_LocalRotation: {x: 0.09252102, y: -0.000000017659856, z: 0.0000000016409463, w: 0.99571073}
+  m_LocalRotation: {x: 0.09252102, y: 0.000000017659858, z: -0.0000000016409465, w: 0.99571073}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
