@@ -8,6 +8,7 @@ public class Policia : MonoBehaviour
     public HealthSystem Vida;
     public Animator Animator;
     public WanderWaypoint Speed;
+    public ParticleSystem particle;
     //Animaci� de daño y muerte
     private void OnTriggerEnter(Collider collider)
     {
@@ -28,7 +29,8 @@ public class Policia : MonoBehaviour
             else
             {
                 //Recibe daño
-                Animator.SetTrigger("Damage");                
+                Animator.SetTrigger("Damage");
+                particle.Play();
                 Vida.Damage(10);
                 
             }

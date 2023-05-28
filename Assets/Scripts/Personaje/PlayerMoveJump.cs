@@ -23,8 +23,10 @@ public class PlayerMoveJump : MonoBehaviour
     public float playerHeight;
     public LayerMask Ground;
     bool grounded;
-
     public float groundDrag;
+
+    [Header("Particulas")]
+    public ParticleSystem sprint;
 
     //Variables de Jump
     /*[Header("Keybinds")]
@@ -115,7 +117,8 @@ public class PlayerMoveJump : MonoBehaviour
             if(grounded && Input.GetButton("Run"))
             {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 40f, ForceMode.Force);
-            }
+            sprint.Play();
+        }
             else if (grounded)
             {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 15f, ForceMode.Force);
@@ -123,7 +126,8 @@ public class PlayerMoveJump : MonoBehaviour
             else if (!grounded && flatVel.magnitude > (moveSpeed *16)) //a l'aire
             {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 40f * airMultiplier, ForceMode.Force);
-            }
+            
+        }
             else if (!grounded)
             {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 15f * airMultiplier, ForceMode.Force);
