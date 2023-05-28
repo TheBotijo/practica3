@@ -70,6 +70,7 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void Update()
     {
+        
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.1f, Ground);
 
