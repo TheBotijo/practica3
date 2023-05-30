@@ -56,10 +56,11 @@ public class PlayerMoveJump : MonoBehaviour
 
     public float shootForce = 1500;
     public float shootRate = 0.5f;
-
     public float range = 100f;
-
     private float shootRateTime = 0;
+
+    [Header("Others")]
+    public DialogueManager dialogueMan;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -73,8 +74,10 @@ public class PlayerMoveJump : MonoBehaviour
         
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.1f, Ground);
-
-        UserInput();
+        if (dialogueMan.talking == false)
+        {
+            UserInput();
+        }
         SpeedControl();
 
         //comprovem si toca el terra per aplicar un fregament al player
@@ -85,7 +88,7 @@ public class PlayerMoveJump : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (scriptAnimations.Stop == false)
+        if (scriptAnimations.Stop == false && dialogueMan.talking == false)
         {
             PlayMove();
         }

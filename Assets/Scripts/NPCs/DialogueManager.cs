@@ -14,14 +14,20 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> noHelping;
     public GameObject yesNo;
     public GameObject nextBtn;
+    public GameObject misionTxt;
+    public GameObject cigarro;
     public Animator animator;
     public Animator ratonAnim;
+    public bool talking;
+    public bool mision;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
         noHelping = new Queue<string>();
+        talking = false;
+        mision= false;
 
     }
 
@@ -29,6 +35,7 @@ public class DialogueManager : MonoBehaviour
     {
         
         animator.SetBool("isOpen", true);
+        talking= true;
         nameTxt.text = dialogue.name;
 
         sentences.Clear();
@@ -48,11 +55,13 @@ public class DialogueManager : MonoBehaviour
         {
             EndDialogue();
             return;
-        } else if (sentences.Count == 4)
+        } 
+        else if (sentences.Count == 4)
         {
             yesNo.SetActive(true);
             nextBtn.SetActive(false);
-        } else
+        } 
+        else
         {
             yesNo.SetActive(false);
             nextBtn.SetActive(true);
@@ -73,25 +82,34 @@ public class DialogueManager : MonoBehaviour
 
         nextNoHelp();
     }
-
+    public void aceptar()
+    {
+        mision = true;
+    }
     public void nextNoHelp()
     {
         yesNo.SetActive(false);
-        nextBtn.SetActive(true);
+        nextBtn.SetActive(false);
         ratonAnim.SetBool("death", true);
 
         string sentence = noHelping.Dequeue();
         dialogueTxt.text = sentence;
 
-        Invoke("EndDialogue", 5);
+        Invoke("EndDialogue", 3);
     }
     public void EndDialogue()
     {
+        if(mision == true)
+        {
+            misionTxt.SetActive(true);
+            cigarro.SetActive(true);
+        }
         ratonAnim.SetBool("death", false);
         ratonAnim.SetBool("talking", false);
         animator.SetBool("isOpen", false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        talking = false;
     }
 
 }

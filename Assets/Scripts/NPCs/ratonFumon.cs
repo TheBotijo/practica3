@@ -10,6 +10,7 @@ public class ratonFumon : MonoBehaviour
     public Transform _player;
     public Animator Animator;
     public float DetectionDistance;
+    public DialogueManager dialogueMan;
     //public float FOV = 60;
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class ratonFumon : MonoBehaviour
         if (isPlayerClose)
         {
             transform.LookAt(_player.position);
-            if (Input.GetButtonDown("Coger"))
+            if (Input.GetButtonDown("Coger") && dialogueMan.talking == false && dialogueMan.mision == false )
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

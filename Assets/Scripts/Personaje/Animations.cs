@@ -31,8 +31,9 @@ public class Animations : MonoBehaviour
 
     [Header("Particulas")]
     public ParticleSystem blood;
-    
 
+    [Header("Others")]
+    public DialogueManager dialogueMan;
     public HealthSystem Vida;
 
 
@@ -92,13 +93,13 @@ public class Animations : MonoBehaviour
         //--------------------------------------------------
         //Animaciones de Ataques
         //Melee
-        if (Input.GetButton("Hit") && player.Armas == 0)
+        if (Input.GetButton("Hit") && player.Armas == 0 && dialogueMan.talking == false)
         {
-            ColliderMano.SetActive(true);
-            Stop = true;
-            Animator.SetBool("AttackMelee", true);            
-            ClipMano.Play();
-            Invoke("StopFalse", delayAttackMelee);
+                ColliderMano.SetActive(true);
+                Stop = true;
+                Animator.SetBool("AttackMelee", true);
+                ClipMano.Play();
+                Invoke("StopFalse", delayAttackMelee);
         }
         else{
             Animator.SetBool("AttackMelee", false);
