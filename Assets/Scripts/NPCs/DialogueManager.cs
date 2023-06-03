@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
     public Animator ratonAnim;
     public bool talking;
     public bool mision;
+    public GameObject pressE;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +28,12 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         noHelping = new Queue<string>();
         talking = false;
-        mision= false;
+        mision= false; 
 
     }
+
+    public void pressEOn() { pressE.SetActive(true); }
+    public void pressEOff() { pressE.SetActive(false); }
 
     public void StartDialogue (Dialogue dialogue)
     {

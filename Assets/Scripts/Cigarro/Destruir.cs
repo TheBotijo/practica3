@@ -25,16 +25,11 @@ public class Destruir : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        bool isPlayerClose = IsPlayerClose();
-        if (isPlayerClose)
-        {
-            pressE.SetActive(true);
-        }
-        else
-        {
-            pressE.SetActive(false);
-        }
+        
     }
+    public void pressEOn(){pressE.SetActive(true);}
+    public void pressEOff() { pressE.SetActive(false); }
+    
     private void OnTriggerStay(Collider other)
     {
         // Cambiar la variable booleana "Tocar" a true en el Animator
@@ -49,11 +44,5 @@ public class Destruir : MonoBehaviour
             inventario.Cantidad++;
             
         }
-    }
-
-    private bool IsPlayerClose()
-    {
-        Vector3 direction = _player.position - transform.position;
-        return Vector3.Distance(_player.position, transform.position) < DetectionDistance;
     }
 }

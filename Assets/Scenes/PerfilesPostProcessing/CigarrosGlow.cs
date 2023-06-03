@@ -8,6 +8,7 @@ public class CigarrosGlow : MonoBehaviour
 
     private PostProcessVolume _postVolume;
     private Bloom _postBloom;
+    public Destruir destruir;
     public Transform player;
     public Transform cigarro ;
     public float distancia1 = 20;
@@ -19,6 +20,7 @@ public class CigarrosGlow : MonoBehaviour
     {
         _postVolume = GetComponent<PostProcessVolume>();
         _postVolume.profile.TryGetSettings(out _postBloom);
+        destruir = GameObject.Find("Cigarette").GetComponent<Destruir>();
     }
 
     // Update is called once per frame
@@ -29,20 +31,26 @@ public class CigarrosGlow : MonoBehaviour
         if (dist < distancia1 && dist > distancia2)
         {
             _postBloom.intensity.value = 5;
-        }else if(dist < distancia2 && dist > distancia3)
-            {
-           
-            _postBloom.intensity.value = 10;
-
-            }
+        }
+        else if(dist < distancia2 && dist > distancia3)
+        {
+        _postBloom.intensity.value = 10;
+        }
         else if (dist < distancia3 && dist > distancia4)
-                {
-                    _postBloom.intensity.value = 20;
-
-                }else if(dist < distancia4)
-                    {
-                    _postBloom.intensity.value = 30;
-                    }
-
+        {
+            _postBloom.intensity.value = 20;
+        }
+        else if (dist < 3)
+        {
+            //pressE.SetActive(true);
+            destruir.pressEOn();
+            _postBloom.intensity.value = 50;
+        }
+        else if(dist < distancia4)
+        {
+            //pressE.SetActive(true);
+            _postBloom.intensity.value = 30;
+            destruir.pressEOff();
+        }
     }
 }
