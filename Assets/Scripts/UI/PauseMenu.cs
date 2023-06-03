@@ -54,9 +54,6 @@ public void Resume()
 
     void Pause()
     {
-        bool timerReached = false;
-        float timer = 0;
-        //pauseMenuUI.SetActive(true);
         animator.SetBool("IsPaused", true);
         Invoke(nameof(pausetime), 0.5f);
         GameIsPaused = true;

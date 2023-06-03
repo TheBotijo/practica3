@@ -29,7 +29,6 @@ public class WanderWaypoint : MonoBehaviour
 
     public float range = 100f;
 
-    private float shootRateTime = 0;
     // Start is called before the first frame update
     void Start()
     {

@@ -28,23 +28,19 @@ public class CigarrosGlow : MonoBehaviour
         float dist = Vector3.Distance(cigarro.position, player.position);
         if (dist < distancia1 && dist > distancia2)
         {
-            Debug.Log("Dist1");
             _postBloom.intensity.value = 5;
         }else if(dist < distancia2 && dist > distancia3)
             {
            
             _postBloom.intensity.value = 10;
-            Debug.Log("Dist2");
 
             }
         else if (dist < distancia3 && dist > distancia4)
                 {
-                    Debug.Log("Dist3");
                     _postBloom.intensity.value = 20;
 
                 }else if(dist < distancia4)
                     {
-                    Debug.Log("Dist4");
                     _postBloom.intensity.value = 30;
                     }
 
