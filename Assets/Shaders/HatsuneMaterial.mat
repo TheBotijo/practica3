@@ -98,6 +98,6 @@ Material:
     - _BaseColor: {r: 0.07019099, g: 0.8584906, b: 0.33683607, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Shine: {r: 15.41361, g: 63.999992, b: 0, a: 0}
+    - _Shine: {r: 3.8534026, g: 15.999998, b: 0, a: 0}
     - _Tiling: {r: 1, g: 3, b: 0, a: 0}
   m_BuildTextureStacks: []
