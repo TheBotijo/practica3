@@ -21,14 +21,14 @@ public class VolumeManager : MonoBehaviour
 
         musicVolume = value;
 
-        musicSliderText.text = ((int)(value * 100)).ToString(); 
-        AudioManager.Instance.UpdateMixerVolume();
+        musicSliderText.text = ((int)(value+100)).ToString();
+        audioMixer.SetFloat("musicVol", value);
     }
-    public void OnSound EffectsSliderValueChange(float value)
+    public void OnSoundEffectsSliderValueChange(float value)
     {
         soundEffectsVolume = value;
 
-        soundEffectsSliderText.text = ((int)(value 100)).ToString(); 
-         AudioManager.Instance.UpdateMixerVolume();
+        soundEffectsSliderText.text = ((int)(value+100)).ToString();
+        audioMixer.SetFloat("sfxVol", value);
     }
  }

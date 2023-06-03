@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject UIGeneral;
     public GameObject pauseBotones;
     public GameObject pauseOpciones;
+    public Animator animator;
 
 
 
@@ -41,9 +42,10 @@ public void Cross()
 
     }
 public void Resume()
-    {
-        pauseMenuUI.SetActive(false);
+    {        
+        //pauseMenuUI.SetActive(false);
         UIGeneral.SetActive(true);
+        animator.SetBool("IsPaused", false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -52,14 +54,20 @@ public void Resume()
 
     void Pause()
     {
-        pauseMenuUI.SetActive(true);
-        UIGeneral.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
+        bool timerReached = false;
+        float timer = 0;
+        //pauseMenuUI.SetActive(true);
+        animator.SetBool("IsPaused", true);
+        Invoke(nameof(pausetime), 0.5f);
         GameIsPaused = true;
     }
-
+    void pausetime()
+    {
+        UIGeneral.SetActive(false);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void Options()
     {
         OptionsMenuOpen = true;
