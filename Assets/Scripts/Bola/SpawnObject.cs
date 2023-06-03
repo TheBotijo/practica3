@@ -6,7 +6,7 @@ public class SpawnObject : MonoBehaviour
 {
     public GameObject bola;
     [SerializeField]
-    float destroyTime = 5;
+    
     void Start()
     {
         bola.SetActive(false);
@@ -14,6 +14,6 @@ public class SpawnObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         bola.SetActive(true);
-        Destroy(bola, destroyTime);
+        
     }
 }
