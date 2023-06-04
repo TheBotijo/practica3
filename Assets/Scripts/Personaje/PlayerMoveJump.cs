@@ -28,11 +28,6 @@ public class PlayerMoveJump : MonoBehaviour
     [Header("Particulas")]
     public ParticleSystem sprint;
 
-    //Variables de Jump
-    /*[Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode runKey = KeyCode.LeftShift;*/
-
     [Header("Jump")]
     public float jumpForce;
     public float jumpCooldown;
@@ -69,9 +64,8 @@ public class PlayerMoveJump : MonoBehaviour
         readyToJump = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.1f, Ground);
         if (dialogueMan.talking == false)
@@ -85,14 +79,11 @@ public class PlayerMoveJump : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-    }
-    private void FixedUpdate()
-    {
+
         if (scriptAnimations.Stop == false && dialogueMan.talking == false)
         {
             PlayMove();
         }
-
     }
     private void UserInput()
     {
@@ -111,75 +102,70 @@ public class PlayerMoveJump : MonoBehaviour
     }
     private void PlayMove()
     {
-
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        //moure's seguint el empty orientaci� endavant el eix vertical i orientaci� dreta el eix horitzontal
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         
-                Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            //moure's seguint el empty orientaci� endavant el eix vertical i orientaci� dreta el eix horitzontal
-            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
-            //apliquem una for�a al moviment quan esta tocant al terra
-            if(grounded && Input.GetButton("Run"))
-            {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 40f, ForceMode.Force);
-            sprint.Play();
+        //apliquem una for�a al moviment quan esta tocant al terra
+        if(grounded && Input.GetButton("Run"))
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 40f, ForceMode.Force);
+        sprint.Play();
         }
-            else if (grounded)
-            {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 15f, ForceMode.Force);
-            }
-            else if (!grounded && flatVel.magnitude > (moveSpeed *16)) //a l'aire
-            {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 40f * airMultiplier, ForceMode.Force);
+        else if (grounded)
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 15f, ForceMode.Force);
+        }
+        else if (!grounded && flatVel.magnitude > (moveSpeed *16)) //a l'aire
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 40f * airMultiplier, ForceMode.Force);
             
         }
-            else if (!grounded)
+        else if (!grounded)
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 15f * airMultiplier, ForceMode.Force);
+        }        
+        //Cambio de Arma
+        if (Input.GetButton("CambioArma"))
+        {
+            if (Time.time - lastChange >= cooldown)
             {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 15f * airMultiplier, ForceMode.Force);
-            }        
-            //Cambio de Arma
-            if (Input.GetButton("CambioArma"))
-            {
-                if (Time.time - lastChange >= cooldown)
+                lastChange = Time.time;
+                Armas++;
+                if (Armas == 3) { Armas = 0; }
+                if (Armas <= 2)
                 {
-                    lastChange = Time.time;
-                    Armas++;
-                    if (Armas == 3) { Armas = 0; }
-                    if (Armas <= 2)
-                    {
-                        switch (Armas)
-                        {//Puño
-                            case 0:
-                                Palo.SetActive(false);
-                                Pistola.SetActive(false);
-                                break;
-                            //Palo
-                            case 1:
-                                Palo.SetActive(true);
-                                Pistola.SetActive(false);
-                                break;
-                            //Pistola
-                            case 2:
-                                Palo.SetActive(false);
-                                Pistola.SetActive(true);
-                                
+                    switch (Armas)
+                    {//Puño
+                        case 0:
+                            Palo.SetActive(false);
+                            Pistola.SetActive(false);
                             break;
-                        }
-                    }
-                    else
-                    {//vuelve a empezar
-                        Armas = 0;
+                        //Palo
+                        case 1:
+                            Palo.SetActive(true);
+                            Pistola.SetActive(false);
+                            break;
+                        //Pistola
+                        case 2:
+                            Palo.SetActive(false);
+                            Pistola.SetActive(true);
+                                
+                        break;
                     }
                 }
-
+                else
+                {//vuelve a empezar
+                    Armas = 0;
+                }
             }
-        
-
+        }
     }
+
     public void Shoot()
     {
         if (Time.time > shootRateTime)
         {
-            //Debug.Log("Disparar2");
             GameObject newBullet;
             Raycast();
             newBullet = Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
@@ -197,12 +183,8 @@ public class PlayerMoveJump : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            //Debug.Log("Disparar3");
-            //Debug.Log(hit.transform.name);
         }
     }
-
-
 
     private void SpeedControl()
     {

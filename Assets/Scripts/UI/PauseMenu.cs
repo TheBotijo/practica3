@@ -73,7 +73,11 @@ public void Resume()
     }
     public void BackToMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        Time.timeScale = 1f;
+        if (GameIsPaused)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            Time.timeScale = 1f;
+        }
+        
     }
 }
